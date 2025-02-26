@@ -9,8 +9,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          repository: "yodayoda/geopolitics"  # Ensure correct repo
           
       - name: Debug repository structure
         run: ls -R  # Lists all files and directories to verify script location
