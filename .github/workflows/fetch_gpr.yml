@@ -10,11 +10,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          repository: "giovanonicris/geopolitics" 
-          path: geopolitics 
-
+          repository: "yodayoda/geopolitics"  # Ensure correct repo
+          
       - name: Debug repository structure
-        run: ls -R  #verify where script lives
+        run: ls -R  # Lists all files and directories to verify script location
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -23,18 +22,14 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd geopolitics  # change directory to the repo folder
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Fetch GPR data
-        run: |
-          cd geopolitics  # change directory to where fetch_gpr_data.py is located
-          python fetch_gpr_data.py
+        run: python fetch_gpr_data.py  # Runs script from repo root
 
       - name: Commit and push data
         run: |
-          cd geopolitics  # change directory before git operates
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
           git add gpr_data.csv
