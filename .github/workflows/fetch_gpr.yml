@@ -10,7 +10,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          repository: "yodayoda/geopolitics" 
+          repository: "giovanonicris/geopolitics" 
           path: geopolitics 
 
       - name: Debug repository structure
