@@ -10,18 +10,12 @@ def download_gpr_data():
     
     if response.status_code == 200:
         data = BytesIO(response.content)
-
-        # List available sheets before reading
         xls = pd.ExcelFile(data)
-        print("Available sheets:", xls.sheet_names)  # Debugging step
+        print("Available sheets:", xls.sheet_names) #debugging helper
+        sheet_name = xls.sheet_names[0]  # grab first sheet
 
-        # Pick the correct sheet name
-        sheet_name = xls.sheet_names[0]  # Default to the first sheet
-
-        # Read the sheet
+        # read and write file
         df = pd.read_excel(xls, sheet_name=sheet_name)
-        
-        # Save to CSV
         output_file = 'gpr_data.csv'
         df.to_csv(output_file, index=False)
         print(f"GPR data successfully saved to {output_file}")
