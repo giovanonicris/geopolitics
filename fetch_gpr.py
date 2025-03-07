@@ -11,7 +11,7 @@ def download_gpr_data():
     if response.status_code == 200:
         data = BytesIO(response.content)
         xls = pd.ExcelFile(data)
-        print("Available sheets:", xls.sheet_names) #debugging helper
+        print("Available sheets:", xls.sheet_names) # to help debug
         sheet_name = xls.sheet_names[0]  # grab first sheet
 
         # read and write file
