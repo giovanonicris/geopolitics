@@ -16,12 +16,13 @@ def download_gpr_data():
 
         # read and write file
         df = pd.read_excel(xls, sheet_name=sheet_name)
+        df.columns.values[0] = "Date" # rename 'month' for consistency across other data
         output_file = 'gpr_data.csv'
         df.to_csv(output_file, index=False)
         print(f"GPR data successfully saved to {output_file}")
     
     else:
-        print(f"Failed to download GPR data: Status code {response.status_code}")
+        print(f"GPR data download failed: {response.status_code}")
         exit(1)
 
 if __name__ == "__main__":
